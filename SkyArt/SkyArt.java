@@ -1,3 +1,5 @@
+package CompuScholar;
+
 // Copyright CompuScholar, Inc.
 // Do not distribute or post in any public or private venue.
 

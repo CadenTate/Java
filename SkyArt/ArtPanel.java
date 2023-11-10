@@ -1,3 +1,5 @@
+package CompuScholar;
+
 // Copyright CompuScholar, Inc.
 // Do not distribute or post in any public or private venue.
 
@@ -33,7 +35,11 @@ public class ArtPanel extends JPanel
 	// ArtPanel constructor
 	public ArtPanel()
 	{
-		
+		try {
+			sunImage = ImageIO.read(new File("C:\\Users\\Caden\\Desktop\\Code\\CompuScholar\\sun.png"));
+		} catch (Exception e) {
+			System.out.println("No Image Found!");
+		}
 	}
 	
 	// This function is provided complete in the activity starter.
@@ -53,7 +59,21 @@ public class ArtPanel extends JPanel
 
 		// cast the Graphics object to a Graphics2D object
 		Graphics2D myGraphics = (Graphics2D) g;
-		
+
+		Rectangle2D.Double myRect = new Rectangle.Double(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
+		myGraphics.setPaint(Color.BLUE);
+		myGraphics.fill(myRect);
+		if(sunImage != null)
+		{
+			myGraphics.drawImage(sunImage,0,0,null);
+		}
+
+		for(int i = 0; i < 4; i++)
+		{
+			int startingX = rand.nextInt(PANEL_WIDTH);
+			int startingY = rand.nextInt(PANEL_HEIGHT);
+			drawCloud(myGraphics, new Point2D.Double(startingX,startingY), STARTING_LEVEL);
+		}
 	}
 	
 	// The student will implement this method as part of the activity 
@@ -61,6 +81,18 @@ public class ArtPanel extends JPanel
 	// series of overlapping white ellipses
 	void drawCloud(Graphics2D myGraphics, Point2D.Double startingPoint, int level)
 	{
-
+		Ellipse2D cloud = new Ellipse2D.Double(startingPoint.x,startingPoint.y,ELLIPSE_WIDTH,ELLIPSE_HEIGHT);
+		myGraphics.setPaint(Color.WHITE);
+		myGraphics.fill(cloud);
+		if(level != 0)
+		{
+			level--;
+			for(int f = 0; f < 6; f++)
+			{
+				int newStartingX = (int)startingPoint.x + rand.nextInt(2 * ELLIPSE_WIDTH) - ELLIPSE_WIDTH;
+				int newStartingY = (int)startingPoint.y + rand.nextInt(2 * ELLIPSE_HEIGHT) - ELLIPSE_HEIGHT;
+				drawCloud(myGraphics, new Point2D.Double(newStartingX,newStartingY), level);
+			}
+		}
 	}
 }
