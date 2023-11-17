@@ -1,4 +1,4 @@
-package CompuScholar;
+package SkyArt;
 
 // Copyright CompuScholar, Inc.
 // Do not distribute or post in any public or private venue.
