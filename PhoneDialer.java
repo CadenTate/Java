@@ -9,6 +9,7 @@ import javax.swing.border.*;
 class Main
 {
     public static void main(String[] args) {
+        @SuppressWarnings("unused")
         PhoneDialer pd = new PhoneDialer();
     }
 }
